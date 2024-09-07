@@ -1,6 +1,6 @@
 import { User } from "src/app/model/user/User";
 import { AppInitialState } from "../AppInitialState";
-import { login, loginFail, loginSuccess, recoverPassswordFail, recoverPassword, recoverPasswordSuccess } from "./login.actions";
+import { login, loginFail, loginSuccess, recoverPasswordFail, recoverPassword, recoverPasswordSuccess } from "./login.actions";
 import { loginReducer } from "./login.reducers";
 import { LoginState } from "./LoginState";
 
@@ -9,7 +9,7 @@ describe("Login store", () => {
     it('recoverPassword', () => {
         const initialState: LoginState = AppInitialState.login;
         
-        const newState = loginReducer(initialState, recoverPassword());
+        const newState = loginReducer(initialState, recoverPassword({email: "any@email.com"}));
         expect(newState).toEqual({
             ...initialState,
             error: null,
@@ -30,7 +30,7 @@ describe("Login store", () => {
     it('recoverPasswordFail', () => {
         const initialState: LoginState = AppInitialState.login;
         const error = {error: 'error'};
-        const newState = loginReducer(initialState, recoverPassswordFail({error}));
+        const newState = loginReducer(initialState, recoverPasswordFail({error}));
         expect(newState).toEqual({
             ...initialState,
             error: null,
@@ -41,7 +41,7 @@ describe("Login store", () => {
 
     it('login',()=>{
         const initialState: LoginState = AppInitialState.login;
-        const newState = loginReducer(initialState, login());
+        const newState = loginReducer(initialState, login({email:"valid@email.com", password: "anyPassword"}));
         expect(newState).toEqual({
             ...initialState,
             error: null,
