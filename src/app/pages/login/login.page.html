@@ -14,15 +14,12 @@
 
         <app-error-message [field]="form.get('email')" error="required" message="Email is mandatory"></app-error-message>
         <app-error-message [field]="form.get('email')" error="email" message="Email is invalid"></app-error-message>
-        <!-- <ion-label color="danger" *ngIf="form.get('email')!.touched && form.get('email')!.errors?.['required']">* Email is mandatory</ion-label> -->
-        <!-- <ion-label color="danger" *ngIf="form.get('email')!.touched && form.get('email')!.errors?.['email']">Email is invalid</ion-label> -->
 
         <ion-item>
         <ion-label position="floating">Password</ion-label>
         <ion-input type="Password"formControlName="password"></ion-input>
       </ion-item>
       <app-error-message [field]="form.get('password')" error="required" message="Password is mandatory"></app-error-message>
-      <!-- <ion-label color="danger" *ngIf="form.get('password')!.touched && form.get('password')!.errors?.['required']">Password is mandatory</ion-label> -->
 
       <ion-button color="medium" fill="clear" size="full" [disabled]="!form.get('email')!.valid"
       (click)="forgotEmailPassword()" id="recoverPassworButton">Forgot email/password</ion-button>
